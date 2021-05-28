@@ -1,0 +1,13 @@
+- if @balls.present?
+  - @balls.each do |ball|
+    = link_to ball_path(ball.id), method: :patch do
+      .ball{style: "width: #{ball.size}px; height: #{ball.size}px;"}
+    = ball.size
+    = image_tag 'human.png', class: 'human'
+
+    = link_to "もういい！", ball_path(ball.id), method: :delete, class: "dlt-btn"
+
+- else
+  = form_with model: @ball, class: "balls-form", local: true do |f| 
+    -# = f.text_field :size
+    = f.submit "みんなの暇な時間をちょっとだけオラにわけてくれ！", class: 'submit-btn'
